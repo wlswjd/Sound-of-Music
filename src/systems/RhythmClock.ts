@@ -63,6 +63,9 @@ export class RhythmClock {
   
       this.startedAt = this.audioContext.currentTime;
       this.offsetMs = offsetMs;
+      this.sourceNode.onended = () => {
+        this.running = false;
+      };
       this.sourceNode.start(0);
       this.running = true;
     }
