@@ -1,0 +1,30 @@
+/**
+ * 노트 하나의 정의.
+ * time: 곡 시작 기준 밀리초 (ms). 이 시점에 판정선에 도달해야 함.
+ * lane: 몇 번 레인에 속하는지 (0부터 시작).
+ * type: 일반 탭 / 길게 누르기(hold) / 특수 노트.
+ */
+export type NoteType = "normal" | "hold" | "silence";
+
+export interface Note {
+  time: number;
+  lane: number;
+  type: NoteType;
+  duration?: number; // hold 노트일 때만 사용 (ms)
+}
+
+/**
+ * 판정 결과.
+ */
+export type Judgment = "perfect" | "great" | "good" | "miss";
+
+/**
+ * 판정 윈도우 (ms 단위).
+ * 실제 플레이어 입력 시각과 노트의 time 차이를 이 값들과 비교해 Judgment 결정.
+ */
+export interface JudgmentWindow {
+  perfect: number; // 예: 30 → ±30ms 이내
+  great: number;   // 예: 60
+  good: number;    // 예: 100
+  // 이걸 넘으면 miss
+}
