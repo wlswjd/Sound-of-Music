@@ -137,6 +137,20 @@ export class ClassicBattleScene extends Phaser.Scene {
         );
         this.laneHighlights.push(highlight);
       }
+
+    // 각 레인 하단에 키 배지 (D/F/J/K) 상시 표시
+    const keyLabels = ["D", "F", "J", "K"];
+    for (let i = 0; i < this.LANE_COUNT; i++) {
+      const x = startX + i * this.LANE_WIDTH + this.LANE_WIDTH / 2;
+      this.add
+        .text(x, this.JUDGMENT_LINE_Y + 30, keyLabels[i], {
+          fontFamily: "monospace",
+          fontSize: "22px",
+          color: "#d4a24a",
+          fontStyle: "bold",
+        })
+        .setOrigin(0.5);
+    }
   }
 
   /** 상태 텍스트와 시각 표시 텍스트를 화면에 배치. */
@@ -188,11 +202,18 @@ export class ClassicBattleScene extends Phaser.Scene {
     const highlight = this.laneHighlights[lane];
     if (!highlight) return;
 
-    highlight.setAlpha(0.6);
+    this.tweens.killTweensOf(highlight);
+
+    // 진단용: 극단적으로 눈에 띄게
+    highlight.setAlpha(1);
+    highlight.setFillStyle(0xffff00); // 밝은 노랑
+    highlight.setScale(1.3, 2);
     this.tweens.add({
       targets: highlight,
       alpha: 0,
-      duration: 250,
+      scaleX: 1,
+      scaleY: 1,
+      duration: 500, // 0.5초로 길게
       ease: "Cubic.Out",
     });
   }
