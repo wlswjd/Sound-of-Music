@@ -18,6 +18,7 @@ export const classicSample: StageChart = {
     perfect: 30,
     great: 60,
     good: 100,
+    bad: 150,
   },
   notes: [
     // 첫 2초는 "준비 시간". 플레이어가 화면을 인지할 시간.

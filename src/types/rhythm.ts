@@ -16,15 +16,16 @@ export interface Note {
 /**
  * 판정 결과.
  */
-export type Judgment = "perfect" | "great" | "good" | "miss";
+export type Judgment = "perfect" | "great" | "good" | "bad" | "miss";
 
 /**
  * 판정 윈도우 (ms 단위).
  * 실제 플레이어 입력 시각과 노트의 time 차이를 이 값들과 비교해 Judgment 결정.
  */
 export interface JudgmentWindow {
-  perfect: number; // 예: 30 → ±30ms 이내
+  perfect: number; // 예: 30 → ±30ms
   great: number;   // 예: 60
   good: number;    // 예: 100
-  // 이걸 넘으면 miss
+  bad: number;     // 예: 150
+  // bad를 넘어가면 miss
 }
