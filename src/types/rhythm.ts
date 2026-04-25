@@ -29,3 +29,12 @@ export interface JudgmentWindow {
   bad: number;     // 예: 150
   // bad를 넘어가면 miss
 }
+
+/**
+ * 보스전 종료 상태.
+ * - playing: 진행 중
+ * - perfect_clear: 보스 HP 0 도달 (보스 처치)
+ * - clear: 곡 끝 + 양쪽 다 살아있음 (살아남음)
+ * - game_over: 플레이어 HP 0 도달 (실패)
+ */
+export type BattleResult = "playing" | "perfect_clear" | "clear" | "game_over";

@@ -102,4 +102,14 @@ export class RhythmClock {
     isRunning(): boolean {
       return this.running;
     }
+
+    /**
+   * 곡이 자연 종료되었는지 (재생이 끝났거나 stop이 호출됨).
+   * onended 콜백이 running을 false로 바꾸므로, 시작 후 running이 false면 종료된 것.
+   */
+  hasFinished(): boolean {
+    // 시작도 안 한 상태 (startedAt이 0)는 종료가 아님
+    if (this.startedAt === 0) return false;
+    return !this.running;
+  }
   }
